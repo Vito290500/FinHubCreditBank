@@ -91,8 +91,8 @@ Per testare i **bonifici** servono **almeno due utenti** distinti (`Utente A` e 
 2. Vai alla pagina **Bonifico/Trasferimento**.  
 3. Inserisci:
    - **IBAN destinatario** = IBAN di **Utente B**  
-   - **Importo** = un valore **inferiore** al saldo di A (es. `50.00`)  
-   - **PIN** del conto (coerente con quanto indicato nel tuo setup)  
+   - **Importo** = l'importo in euro della cifra da inviare 
+   - **PIN** del conto (viene inviato tramite email al momento della registrazione)  
    - **Descrizione** / **Categoria** (facoltativi)
 4. Conferma il bonifico.  
 5. **Risultato atteso**:
