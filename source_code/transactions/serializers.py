@@ -203,3 +203,11 @@ class TransactionDetailSerializer(serializers.ModelSerializer):
 
     def get_category_name(self, obj):
         return obj.category.name if obj.category else None
+
+
+class TransferRequestSerializer(serializers.Serializer):
+    from_account = serializers.UUIDField()
+    to_iban = serializers.CharField()
+    amount = serializers.DecimalField(max_digits=12, decimal_places=2)
+    description = serializers.CharField(required=False, allow_blank=True)
+    pin = serializers.CharField(write_only=True, min_length=4, max_length=6)

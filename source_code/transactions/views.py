@@ -7,12 +7,13 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from drf_spectacular.utils import extend_schema, extend_schema_view
+from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiExample
 from .models import Transaction
-from .serializers import TransactionSerializer, TransactionDetailSerializer
+from .serializers import TransactionSerializer, TransactionDetailSerializer, TransferRequestSerializer
 from .serializers import TransferSerializer
 from accounts.models import BankAccount
 from .pagination import TransactionPageNumberPagination
+
 
 
 @extend_schema_view(
@@ -66,6 +67,24 @@ class TransactionViewSet(viewsets.ReadOnlyModelViewSet):
         return qs
 
 
+@extend_schema(
+    summary='Esecuzione bonifico',
+    request=TransferRequestSerializer,
+    responses={201: TransactionDetailSerializer, 400: None},
+    examples=[
+        OpenApiExample(
+            'Esempio bonifico',
+            description='Esecuzione bonifico con verifica PIN',
+            value={
+                "from_account": "00000000-0000-0000-0000-000000000000",
+                "to_iban": "IT60X0542811101000000123456",
+                "amount": 100.00,
+                "description": "Bonifico test via Swagger",
+                "pin": "123456"
+            },
+        )
+    ],
+)
 class TransferView(APIView):
     permission_classes = [IsAuthenticated]
 
