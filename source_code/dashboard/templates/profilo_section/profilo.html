@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FCHB - Profilo</title>
+    <link rel="icon" href="{% static 'image/IconWeb.png' %}" type="image/png">
+
+    <!-- STYLE CSS IMPORT  -->
+    <link rel="stylesheet" href="{% static 'css/componenti.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile_section/profile.css' %}">
+
+
+</head>
+<body>
+    {% include 'components/navbar.html' %}
+
+    <div class="header-container">
+        <div class="title-container-header">
+            <div class="img-circle-container">
+                <img src="{% static 'image/users.jpg' %}" alt="User">
+            </div>
+            
+            <h3>Il tuo profilo</h3>
+        </div>
+
+        <div class="menu-trace">
+            <a href="{% url 'homepage' %}">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                    <path d="M3 10.29L12 3l9 7.29V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1v-9.71z"/>
+                </svg>
+            </a>
+            <p class="arrow-right">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M8 4l8 8-8 8V4z"/>
+                </svg>
+            </p>
+            <p class="subtitle-menu-trace">Dati Profilo</p>
+        </div>
+    </div>
+
+    <div class="main-container">
+
+        <div class="informazioni-base-account">
+
+            <div class="header-informazioni-base">
+                <h3 id="full_name"></h3>
+                <p id="status_account" class="status-account">Verificato - attivo dal data</p>
+            </div>
+          
+            <p class="place-date-birth" id="place_date_birth">Nato a Luogo il Data di nascita</p>
+            <p class="text-explain">Qui trovi le tue credenziali di accesso ai servizi: <span>nome utente, password, numero di cellulare</span></p>
+            
+            <button onclick="window.location.href='{% url 'gestisci-account' %}'">Gestisci Account  →</button>
+        </div>
+
+        <div class="grid-card-container">
+
+            <div class="card-dati" style="border-left: 6px solid var(--blue-200);">
+                <div class="header-card">
+                    <h3>Dati personali</h3>
+                </div>
+               
+                <p class="text-explain">Qui trovi i dati personali associato al tuo account: <span>dati anagrafici, indirizzi, contatti.</span></p>
+
+                <div class="button-container" style="justify-content: space-between;">
+                    <p class="updated-data">Ultimo aggiornamento: 04/07/2025</p>
+                    <button onclick="window.location.href='{% url 'dati-personali' %}'">→</button>
+                </div>
+            </div>
+
+            <div class="card-dati">
+                <div class="header-card">
+                    <h3>Privacy</h3>
+                    <p class="status-account">Completo</p>
+                </div>
+                <p class="text-explain">Qui trovi i <span>consensi Privacy</span> che hai rilasciato a Fin Hub bank e che puoi aggiornare in ogni momento.</p>
+                <div class="button-container">
+                    <button>→</button>
+                </div>
+            </div>
+
+            <div class="card-dati">
+                <div class="header-card">
+                    <h3>Documenti</h3>
+                    <p class="status-account">Completo</p>
+                </div>
+                <p class="text-explain">Qui trovi i <span>documenti</span> inerenti al tuo conto con Fin Hub bank.</p>
+                <div class="button-container">
+                    <button>→</button>
+                </div>
+            </div>
+
+            <div class="card-dati">
+                <div class="header-card">
+                    <h3>Dispositivi e sicurezza</h3>
+                    <p class="status-account">Completo</p>
+                </div>
+                <p class="text-explain">Qui trovi le informazioni relative ai <span>dispostivi e alle applicazioni</span> che utilizzi per fruire dei servizi.</p>
+                <div class="button-container">
+                    <button>→</button>
+                </div>
+            </div>
+
+            <div class="card-dati">
+                <div class="header-card">
+                    <h3>Firme</h3>
+                    <p class="status-account" style="background-color: #f4f6f8; color: #676767;">da attivare</p>
+                </div>
+                <p class="text-explain">Qui trovi le informazioni sui <span>strumenti di firma elettronica avanzata</span> con cui sottoscrivere i servizi in modo sicuro.</p>
+                <div class="button-container">
+                    <button>→</button>
+                </div>
+            </div>
+
+            <div class="card-dati">
+                <div class="header-card">
+                    <h3>Aggiornamento piano</h3>
+                    <p class="status-account" style="background-color: #ffda7c; color: rgb(255, 140, 0);">aggiorna</p>
+                </div>
+                <p class="text-explain">Qui trovi le informazioni sui <span>piani del conto</span> che soddisfano le diverse esigenze dell'utente.</p>
+                <div class="button-container">
+                    <button>→</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {% include 'components/footer.html' %}
+      
+    <script src="{% static 'js/profile_section/profile.js' %}"></script> 
+    <script src="{% static 'js/navbar.js' %}"></script>
+</body>
+</html>

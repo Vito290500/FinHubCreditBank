@@ -1,0 +1,201 @@
+body{
+    padding: 0;
+    margin: 0;
+    background-color: var(--gray-100);
+}
+.header-container{
+    background-color: var(--blue-50);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0px;
+    box-shadow: 1px 1px 8px 2px rgba(0,0,0,0.05);
+}
+.title-container-header{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.title-container-header h3{
+    color: var(--gray-900);
+    margin-bottom: 0rem;
+    margin-top: 1rem;
+    font-size: 25px;
+}
+.img-circle-container{
+    border-radius: 50%;
+    overflow: hidden;
+    height: 120px;
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--blue-300);
+}
+.title-container-header img{
+    width: 120px;
+    height: 120px;
+}
+.menu-trace{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.arrow-right,
+.subtitle-menu-trace,
+.menu-trace a{
+    text-decoration: none;
+    color: var(--gray-400);
+}
+.menu-trace a:hover{
+    color: var(--gray-900);
+}
+
+
+/* MAIN CONTAINER STYLE */
+.main-container{
+    width: 80%;
+    margin: auto;
+}
+.informazioni-base-account{
+    background-color: var(--bacground-contrast);
+    box-shadow: 1px 1px 8px 2px rgba(0,0,0,0.05);
+    margin-top: 4rem;
+    padding: 25px 20px 30px 20px;
+}
+.header-informazioni-base{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4rem;
+}
+.status-account{
+    background-color: var(--success-200);
+    padding: 5px 20px;
+    border-radius: 12px;
+    color: var(--success-300);
+    font-weight: 600;
+}
+.informazioni-base-account h3{
+    font-size: 30px;
+    color: var(--blue-600);
+}
+.place-date-birth{
+    color: var(--gray-900);
+    font-weight: 600;
+    margin-top: 1rem;
+}
+.text-explain{
+    color: var(--gray-900);
+    letter-spacing: 0.8px;
+    line-height: 1.8rem;
+}
+.text-explain span{
+    color: var(--gray-900);
+    font-weight: 600;
+}
+.main-container button{
+    background-color: var(--blue-400);
+    border: none;
+    color: white;
+    border-radius: 4px;
+    padding: 12px 20px;
+    text-align: center;
+    width: 13rem;
+    margin-top: 1rem;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+.main-container button:hover{
+    background-color: var(--blue-600);
+    cursor: pointer;
+}
+
+
+/* CARD STYLE */
+.grid-card-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.card-dati{
+    background-color: var(--bacground-contrast);
+    box-shadow: 1px 1px 8px 2px rgba(0,0,0,0.05);
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+.card-dati:hover{
+    transform: scale(1.05);
+}
+.header-card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-card h3{
+    font-size: 20px;
+    color: var(--gray-900);
+}
+.updated-data{
+    color: var(--gray-400);
+    font-weight: bold;
+}
+.card-dati p{
+    max-width: 90%;
+    text-align: justify;
+}
+.button-container{
+    display: flex;
+    justify-content: flex-end;
+}
+.card-dati button{
+    width: 4rem;
+}
+
+
+
+/* FOOTER STYLE */
+.footer{
+    background-color: var(--blue-100);
+    height: 100px;
+    margin-top: 4rem;
+    background: linear-gradient(135deg, #004990, #0073e6);
+
+}
+.footer-content {
+    max-width: 80%;
+    margin: auto;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.affiliations{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.img-container-footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 0px 13px;
+    border-radius: 2px;
+    color: var(--gray-400);
+    font-weight: 500;
+}
+.img-container-footer img{
+    width: 40px;
+    height: 40px;
+}
+.footer-logo p{
+    color: white;
+}

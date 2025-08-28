@@ -1,0 +1,383 @@
+
+<!-- DASHBOARD HOMEPAGE TEMPLATE -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>FHCB – Dashboard</title>
+    <link rel="icon" href="{% static 'image/IconWeb.png' %}" type="image/png">
+
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/componenti.css' %}">
+
+  </head>
+  
+  <body>
+    {% include 'components/navbar.html' %}
+
+    <div class="goal_saving_button"></div>
+    
+    <div class="banner-container">
+      <h5>Bentornato,</h5>
+      <h3>Nome Utente</h3>
+      <p id="last-login"></p>  
+    </div>
+
+    <div class="main-container">
+
+      <div class="operazioni">
+
+        <div class="tools-header">
+          <h3>Operazioni</h3>
+          <div class="button-scroll-direction">
+            <button class="left-button"><</button>
+            <button class="right-button">></button>
+          </div>
+        </div>
+        
+        <div class="scroll-content">
+
+          <div class="icon-button-circle" onclick="window.location.href='/dashboard/bonifico'" style="cursor:pointer;">
+            <div class="circle-img">
+              <img src="{% static 'image/operazioni/bonificoSepa.png' %}" alt="Icona">
+            </div>
+            <h5>Bonifico Sepa</h5>
+          </div>
+
+          <div class="icon-button-circle">
+            <div class="circle-img">
+              <img src="{% static 'image/operazioni/giroconto.png' %}" alt="Icona">
+            </div>
+            <h5>Giroconto interno</h5>
+          </div>
+
+          <div class="icon-button-circle">
+            <div class="circle-img">
+              <img src="{% static 'image/operazioni/ricarica.png' %}" alt="Icona">
+            </div>
+            <h5>Ricarica prepagata</h5>
+          </div>
+
+          <div class="icon-button-circle" onclick="window.location.href='{% url 'goals' %}'" style="cursor:pointer;">
+            <div class="circle-img">
+              <img src="{% static 'image/operazioni/goals.png' %}" alt="Icona">
+            </div>
+            <h5>Goal Saving</h5>
+          </div>
+
+          <div class="icon-button-circle">
+            <div class="circle-img">
+              <img src="{% static 'image/operazioni/bolletta.png' %}" alt="Icona">
+            </div>
+            <h5>Bolletta veloce (QR)</h5>
+          </div>
+
+          <div class="icon-button-circle">
+            <div class="circle-img">
+              <img src="{% static 'image/operazioni/blocca.png' %}" alt="Icona">
+            </div>
+            <h5>Blocco carta</h5>
+          </div>
+
+          <div class="icon-button-circle">
+            <div class="circle-img">
+              <img src="{% static 'image/operazioni/pin.png' %}" alt="Icona">
+            </div>
+            <h5>Cambio PIN online</h5>
+          </div>
+
+          <div class="icon-button-circle">
+            <div class="circle-img">
+              <img src="{% static 'image/operazioni/piano.png' %}" alt="Icona">
+            </div>
+            <h5>Piano PAC</h5>
+          </div>
+
+          <div class="icon-button-circle" onclick="window.location.href='{% url 'estratto' %}'">
+            <div class="circle-img">
+              <img src="{% static 'image/operazioni/estratto.png' %}" alt="Icona">
+            </div>
+            <h5>Scarica estratto conto</h5>
+          </div>
+
+          <div class="icon-button-circle">
+            <div class="circle-img">
+              <img src="{% static 'image/operazioni/salvadanaio.png' %}" alt="Icona">
+            </div>
+            <h5>Attiva salvadanaio</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="current-balance">
+        <div class="saldo">
+          <h3>Credit Card</h3>
+
+          <div class="tools">
+            <button id="toggle-eye" aria-label="Mostra/nascondi">
+              <svg class="eye" width="22" height="14" viewBox="0 0 22 14"
+                  fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 7s4-5 10-5 10 5 10 5-4 5-10 5S1 7 1 7z"/>
+                <circle cx="11" cy="7" r="3"></circle>
+                <line class="eye-bar" x1="1" y1="13" x2="21" y2="1"/>
+              </svg>
+            </button>
+
+            <button id="view-transactions-btn" onclick="window.location.href='{% url 'transazioni' %}'">View Transactions</button>
+          </div>
+        </div>
+
+        <div class="credit-card-container">
+          <div class="finhub-card"
+            data-number="4000056655665556" 
+            data-name="VITO DI VENOSA" 
+            data-expiry="07/25" 
+            data-balance="2450.73">  
+
+            <div class="chip"></div>
+            <div class="logo">FinHub<span>Credit Bank</span></div>
+          
+            <div class="card-number"></div>
+        
+            <div class="row">
+              <div class="label">Titolare</div>
+              <div class="label">Scadenza</div>
+            </div>
+            <div class="row">
+              <div class="card-name"></div>
+              <div class="card-expiry"></div>
+            </div>
+
+            <div class="card-balance"></div>
+            
+          </div>
+        
+          <div class="finhub-card back"
+              data-cvv="123">
+            <div class="magstripe"></div>
+        
+            <div class="sign-row">
+              <div class="signature"></div>
+              <div class="cvv-box"></div> 
+            </div>
+        
+            <div class="info">
+              Per assistenza chiama 800-123-456 • www.finhub.com
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="title-utilities">Il Mondo FinHub</h3>
+
+      <div class="card-utilities">
+
+        <div class="card-style" style="background-color: var(--blue-200);">
+          <div class="header-card">
+            <h3>Elenco Movimenti</h3>
+            <div class="circle-img">
+              <img src="{% static 'image/finworld/spese.png' %}" alt="Icona">
+            </div>
+          </div>
+          <button id="vedi-spese-btn" onclick="window.location.href='{% url 'elenco-movimenti' %}'">Vedi di più</button>
+        </div>
+
+        <div class="card-style" style="background-color: var(--blue-200);">
+          <div class="header-card">
+            <h3>Elenco Spese e transizioni</h3>
+            <div class="circle-img">
+              <img src="{% static 'image/finworld/elencospese.png' %}" alt="Icona">
+            </div>
+          </div>
+          <button id="vedi-transazioni-btn" onclick="window.location.href='{% url 'transazioni' %}'">Vedi di più</button>
+        </div>
+
+        <div class="card-style" style="background-color: var(--blue-200);">
+          <div class="header-card">
+            <h3>Suddivisione Spese</h3>
+            <div class="circle-img">
+              <img src="{% static 'image/finworld/altriprodotti.png' %}" alt="Icona">
+            </div>
+          </div>
+          <button onclick="window.location.href='{% url 'spese' %}'">Vedi di più</button>
+        </div>
+
+        <div class="card-style">
+          <div class="header-card">
+            <h3>Statistiche</h3>
+            <div class="circle-img">
+              <img src="{% static 'image/finworld/statistiche.png' %}" alt="Icona">
+            </div>
+          </div>
+          <button onclick="window.location.href='{% url 'statistica' %}'">Vedi di più</button>
+        </div>
+
+        <div class="card-style">
+          <div class="header-card">
+            <h3>Assicurazioni</h3>
+            <div class="circle-img">
+              <img src="{% static 'image/finworld/assicurazioni.png' %}" alt="Icona">
+            </div>
+          </div>
+          <button>Vedi di più</button>
+        </div>
+
+        <div class="card-style">
+          <div class="header-card">
+            <h3>Finanziamenti</h3>
+            <div class="circle-img">
+              <img src="{% static 'image/finworld/finanziamenti.png' %}" alt="Icona">
+            </div>
+          </div>
+          <button>Vedi di più</button>
+        </div>
+
+        <div class="card-style">
+          <div class="header-card">
+            <h3>Investimenti Eco</h3>
+            <div class="circle-img">
+              <img src="{% static 'image/finworld/investimentieco.png' %}" alt="Icona">
+            </div>
+          </div>
+          <button>Vedi di più</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="novità">
+      <div class="novità-header">
+        <h3>Le ultime Novità</h3>
+        <div class="button-scroll-direction">
+          <button class="left-button"><</button>
+          <button class="right-button">></button>
+        </div>
+      </div>
+
+      <div class="novità-content">
+
+
+        <div class="novità-card">
+            <img src="https://i2.res.24o.it/images2010/Editrice/ILSOLE24ORE/ILSOLE24ORE/2023/05/24/Commenti%20e%20inchieste/ImmaginiWeb/Ritagli/natura_ecologia_AdobeStock_207747770-kBFB--1020x533@IlSole24Ore-Web.jpeg" alt="Novità 1">
+            <div class="novità-card-content">
+
+              <h3>Eco-hub sistemy</h3>
+              <p>Da sempre FinHub si impegna per la sostenibilità ambientale. Per te che ami la natura, richiedi il tuo piano Eco-hub e aiutaci a salvare il pianeta.</p>
+              <button>Scropri di più →</button>
+
+            </div>
+        </div>
+      
+        <div class="novità-card">
+          <img src="https://tecno4industry.it/app/uploads/2022/06/investimenti-sostenibili-4-0-imprese-pmi-italiane-Mise.jpg" alt="Novità 1">
+          <div class="novità-card-content">
+
+            <h3>Investimenti sostenibili</h3>
+            <p>Investi nelle nuove fonti sostenibili. FinHub ti aiuta a investire nelle nuove fonti sostenibili e aiutare l'ambiente.</p>
+            <button>Scropri di più →</button>
+
+          </div>
+        </div>
+        
+        <div class="novità-card">
+          <img src="https://www.dgroove.it/wp-content/uploads/2021/09/sicurezza_dei_dati.jpg" alt="Novità 1">
+          <div class="novità-card-content">
+
+            <h3>Security Guard Hub</h3>
+            <p>FinHub da sempre collabora con Security Guard Hub per offrire il massimo servizio di sicurezza per i tuoi dati.</p>
+            <button>Scropri di più →</button>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="recensione">
+      <div class="card-recensione">
+        <h3>Aiutaci a migliorare</h3>
+        <div class="container-recensioni">
+          <p>Aiutaci a migliorare i servizi della piattaforma FinHub. Partecipa al sondaggio</p>
+          <button>Si, Partecipo</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="background"></div>
+
+    <div class="credit-info-modale" id="creditCardModal">
+
+      <div class="title-container">
+        <h3 class="title-modale">Informazioni Carta</h3>
+        <button class="modale-close" id="modalClose">&times;</button>
+      </div>
+      
+      <div class="tools">
+          <button class="card-action-btn secondary" id="toggleModalEye">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
+          <button class="card-action-btn primary" onclick="window.location.href='{% url 'estratto' %}'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+            Scarica Estratto
+          </button>
+      </div>      
+      
+      <div class="card-preview">
+          <div class="finhub-card" id="modalCard">
+            <div class="chip"></div>
+            <div class="logo">FinHub<span>Credit Bank</span></div>
+            <div class="card-number"></div>
+            <div class="row">
+              <div class="label">Titolare</div>
+              <div class="label">Scadenza</div>
+            </div>
+            <div class="row">
+              <div class="card-name">Vito Di Venosa</div>
+              <div class="card-expiry">07/25</div>
+            </div>
+          </div>
+      </div>
+
+
+      <div class="info-section">
+
+
+        <div class="info-item">
+          <label>IBAN</label>
+          <div class="value masked" id="modalCardIban"></div>
+        </div>
+
+        <div class="info-item">
+          <label>Saldo</label>
+          <div class="value" id="modalCardBalance"></div>
+        </div>
+
+        <div class="info-item">
+          <label>CVV</label>
+          <div class="value masked" id="modalCardCvv"></div>
+        </div>
+      </div>
+    </div>
+    
+    {% include 'components/footer.html' %}
+
+    <!-- Import CDN end of body -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Import JS end of body -->
+    <script src="{% static 'js/auth-utils.js' %}"></script>
+    <script src="{% static 'js/dashboard.js' %}"></script>
+    <script src="{% static 'js/navbar.js' %}"></script>
+  </body>
+</html>

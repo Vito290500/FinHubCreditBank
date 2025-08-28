@@ -1,0 +1,36 @@
+{% load static %}
+
+<header class="navbar">
+
+    <div class="navbar__container">
+        
+      <a href="{% url 'homepage' %}" class="navbar__logo">
+        <img src="{% static 'image/logo.png' %}" alt="FinHub Credit Bank">
+      </a>
+  
+      <div class="left-side-tools-container">
+        <button class="assistenza-btn"><img src="{% static 'image/Aiuto.png' %}" alt="">Help Center</button>
+        <button class="notifiche-btn"><img src="{% static 'image/Notifiche.png' %}" alt="notifiche"></button>
+
+        <div class="navbar__profile">
+
+          <button id="profileToggle" aria-haspopup="true" aria-expanded="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2" />
+              <path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </button>
+  
+          <ul id="profileMenu" class="dropdown" role="menu">
+            <li><a href="/settings/">Impostazioni</a></li>
+            <li><a href="{% url 'profile-page' %}" id="profile-btn">Dati profilo</a></li>
+            <li><a href="/newsletter/">Newsletter</a></li>
+            <li><a href="/security/">Sicurezza</a></li>
+            <li class="divider"></li>
+            <li><a href="/">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+</header>

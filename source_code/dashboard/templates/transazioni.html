@@ -1,0 +1,85 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>FCHB - Transizioni</title>
+    <link rel="icon" href="{% static 'image/IconWeb.png' %}" type="image/png">
+
+    <!-- IMPORT CSS -->
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/componenti.css' %}">
+    <link rel="stylesheet" href="{% static 'css/transizioni.css' %}">
+
+  </head>
+  <body>
+    {% include 'components/navbar.html' %}
+
+    <div class="header-container">
+      <div class="title-container-header">
+        <div class="img-circle-container">
+          <img src="{% static 'image/operazioni/estratto.png' %}" alt="Transazioni">
+        </div>
+        <h3>Transazioni</h3>
+      </div>
+      <div class="menu-trace">
+        <a href="{% url 'homepage' %}">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M3 10.29L12 3l9 7.29V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1v-9.71z"/>
+          </svg>
+        </a>
+        <p class="arrow-right">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M8 4l8 8-8 8V4z"/>
+          </svg>
+        </p>
+        <p class="subtitle-menu-trace">Transazioni</p>
+      </div>
+    </div>
+
+    <div class="main-container">
+
+      <div class="transazioni-header-flex">
+        <h3 class="main-title">Elenco transazioni</h3>
+
+        <div class="transazioni-controls">
+          <input id="transazioni-search" type="text" placeholder="Cerca..." class="transazioni-search-input">
+
+          <div class="transazioni-filter-dropdown">
+            <button id="transazioni-filter-btn" type="button" class="transazioni-filter-select">Filtra categorie ▼</button>
+            <div id="transazioni-filter-menu" class="transazioni-filter-menu"></div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="transazioni-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome transazione</th>
+              <th>Data</th>
+              <th>Importo</th>
+              <th>Destinatario</th>
+              <th>Categoria</th>
+              <th>Scarica</th>
+            </tr>
+          </thead>
+          <tbody id="transazioni-tbody"></tbody>
+        </table>
+        <div id="transazioni-pagination" class="transazioni-pagination"></div>
+      </div>
+    </div>
+
+    {% include 'components/footer.html' %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script src="{% static 'js/auth-utils.js' %}"></script>
+    <script src="{% static 'js/transazioni.js' %}"></script>
+    <script src="{% static 'js/navbar.js' %}"></script>
+  </body>
+</html> 

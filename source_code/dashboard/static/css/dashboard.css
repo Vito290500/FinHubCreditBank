@@ -1,0 +1,716 @@
+body{
+    padding: 0;
+    margin: 0;
+    background-color: var(--gray-100);
+}
+
+
+/* STILE BANNER */
+.banner-container{
+    background-color: var(--blue-50);
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px 11%;
+    box-shadow: 1px 1px 8px 2px rgba(0,0,0,0.05);
+    height: 120px;
+}
+.banner-container h5{
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0;
+}
+.banner-container h3{
+    font-size: 45px;
+    color: var(--blue-500);
+    margin: 0;
+}
+.banner-container p{
+    font-size: 15px;
+    color: var(--gray-400);
+    margin: 5px 0px 0px 0px;
+}
+
+
+
+
+/* STILE BILANCIO CORRENTE */
+.current-balance{
+    background-color: var(--bacground-contrast);
+    box-shadow: 1px 1px 8px 2px rgba(0,0,0,0.05);
+    padding: 20px 50px;
+    margin-top: 3rem;
+}
+.current-balance .saldo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.saldo h3{
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--gray-900);
+}
+
+
+
+/* STILE CREDIT CARD */
+.credit-card-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 80px;
+}
+
+
+
+/* STILE CREDIT CARD FRONTE */
+.finhub-card{
+    --w: 520px;          
+    --h: calc(var(--w)*0.62);
+    --radius: 18px;
+    width: var(--w);
+    height: var(--h);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    box-sizing: border-box;
+    color:#fff;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: .05em;
+    position:relative;
+    overflow:hidden;
+    background: radial-gradient(circle at 30% 30%, #4d94ff 0%, #005bb5 60%) no-repeat;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.finhub-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 91, 181, 0.3);
+}
+.finhub-card::before{
+    content:'';
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 30% 30%, #4d94ff 0%, #005bb5 60%),
+      url(data:image/svg+xml;utf8,
+          <svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22250%22>
+            <path d=%22M0 200 Q150 100 300 200 T600 200%22 fill=%22none%22
+                  stroke=%22rgba(255,255,255,.06)%22 stroke-width=%2230%22/>
+          </svg>)
+      center/cover no-repeat;
+    opacity:.8;
+    pointer-events:none;
+}
+.chip{
+    width:46px; height:34px;
+    border-radius:6px;
+    background:linear-gradient(135deg,#d8d8d8 0%,#9c9c9c 100%);
+    margin-bottom:32px;
+}
+.logo{
+    position:absolute; top:24px; right:28px;
+    font-weight:700; text-align:right;
+    line-height:1;
+}
+.logo span{
+    display:block;
+    font-size:.65em;
+    font-weight:400;
+}
+.card-number,
+.card-name,
+.card-expiry{
+    font-weight:600;
+    font-size:1.1rem;
+    text-transform:uppercase;
+}
+.card-number{
+    font-size:1.4rem;
+    letter-spacing:.15em;
+    margin-bottom:26px;
+}
+.row{
+    display:flex; justify-content:space-between;
+}
+.label{
+    font-size:.65rem; opacity:.75; margin-bottom:4px;
+}
+  
+
+
+/* STILE CREDIT CARD BACK */
+.finhub-card.back{
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  gap:22px;
+}
+.magstripe{
+  height:48px;
+  background:#111;
+  border-radius:4px;
+  margin-top:10px;
+}
+.sign-row{
+  display:flex; align-items:center;
+  gap:12px; margin-inline:4px;
+}
+.signature{
+  flex:1;
+  height:36px;
+  background:repeating-linear-gradient(
+              45deg,#fff, #fff 6px, #f2f2f2 6px, #f2f2f2 12px);
+  border-radius:3px;
+  position:relative;
+}
+.cvv-box{
+  width:64px; height:36px;
+  background:#fff; color:#111;
+  font-family:'Courier New', monospace;
+  font-weight:700; letter-spacing:.1em;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:3px;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.15);
+}
+.info{
+  margin-top:auto;
+  font-size:.55rem;
+  opacity:.8;
+  text-align:center;
+}
+.finhub-card.back .cvv-box::after{
+    content: attr(data-cvv);
+}
+.chip{
+    --w: 50px;           
+    --h: 36px;          
+    --c: #c99b33;        
+    --c-light: #dcb75b; 
+    --c-dark: #a47120;   
+    width: var(--w);
+    height: var(--h);
+    border-radius: 8px;
+    position: relative;
+    background:
+      linear-gradient(135deg,var(--c-light) 0%,var(--c) 40%,var(--c-dark) 100%);
+    box-shadow:
+      inset 0 1px 2px rgba(255,255,255,.7),
+      inset 0 -1px 3px rgba(0,0,0,.35);
+    overflow: hidden;
+}
+.chip::before{
+    content:"";
+    position:absolute; inset:0;
+    display:grid;
+    grid-template-columns: 30% 5px 1fr 5px 26%;
+    grid-template-rows:    22% 4px 22% 4px 22% 4px 26%;
+    background:
+      repeating-linear-gradient(
+        to right,
+        transparent 0 calc(30% - 1px),
+        rgba(0,0,0,.25) calc(30% - 1px) 30%,
+        transparent 30% calc(30% + 5px),
+        rgba(0,0,0,.25) calc(30% + 5px) calc(30% + 6px)
+      ),
+      repeating-linear-gradient(
+        to left,
+        transparent 0 calc(26% - 1px),
+        rgba(255,255,255,.35) calc(26% - 1px) 26%,
+        transparent 26% calc(26% + 4px),
+        rgba(255,255,255,.35) calc(26% + 4px) calc(26% + 5px)
+      ),
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0 calc(22% - 1px),
+        rgba(0,0,0,.25) calc(22% - 1px) 22%,
+        transparent 22% calc(22% + 4px),
+        rgba(0,0,0,.25) calc(22% + 4px) calc(22% + 5px)
+      ),
+      repeating-linear-gradient(
+        to top,
+        transparent 0 calc(26% - 1px),
+        rgba(255,255,255,.35) calc(26% - 1px) 26%,
+        transparent 26% calc(26% + 4px),
+        rgba(255,255,255,.35) calc(26% + 4px) calc(26% + 5px)
+      );
+    mix-blend-mode: overlay;
+    pointer-events:none;
+}
+  
+
+
+/*  STILE OCCHIO */
+.tools{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.tools #toggle-eye{
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    color: var(--gray-400);
+    transition: transform .25s ease;
+}
+.tools #toggle-eye.open .eye-bar{ opacity: 0; }          
+.tools #toggle-eye:active { transform: scale(.9); }
+.card-balance{
+    margin-top: 30px;
+    font-weight: 900;
+    font-size: 35px;
+    letter-spacing: .04em;
+}
+.masked{
+    filter: blur(8px);
+    user-select:none;
+}
+.unmasked{ 
+    filter: none;
+}
+.eye-bar{ 
+    transition: opacity .25s;
+}
+#toggle-eye.open .eye-bar{ 
+    opacity:0;
+}   
+.tools button:last-of-type{
+    background-color: var(--blue-400);
+    border-radius: 8px;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+}
+.tools button:last-of-type:hover{
+    background-color: var(--blue-500);
+}
+
+
+
+
+/* STILE SCROLLBAR OPERAZIONI */
+.operazioni{
+    background-color: var(--bacground-contrast);
+    box-shadow: 1px 1px 8px 2px rgba(0,0,0,0.05);
+    padding: 20px 50px;
+    margin-top: 3rem;
+}
+.tools-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.tools-header h3{
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--gray-900);
+}
+.button-scroll-direction{
+    display: flex;
+    gap: 10px;
+}
+.button-scroll-direction button{
+    background-color: var(--blue-400);
+    border-radius: 8px;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+}
+.scroll-content{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 150px;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+}
+.scroll-content::-webkit-scrollbar {
+    display: none; 
+}
+.icon-button-circle {
+    flex: 1 0 0;
+    min-width: 160px;
+    max-width: calc(100% / 8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.circle-img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--blue-50);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+.circle-img img{
+    width: 40px;
+    height: 40px;
+}
+.icon-button-circle h5{
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--gray-400);
+}
+
+
+
+
+/* STILE CARD UTILITIES*/
+.title-utilities{
+    margin-top: 3rem;
+    padding: 20px 0px 0px 10px;
+    font-weight: bold;
+    color: var(--gray-900);
+}
+.card-utilities{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 2rem;
+}
+.card-style{
+    background-color: var(--bacground-contrast);
+    box-shadow: 1px 1px 8px 2px rgba(0,0,0,0.05);
+    padding: 30px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 25px;
+    border-radius: 8px;
+}
+.card-style:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+.card-style h3{
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--gray-900);
+}
+.card-style button{
+    background-color: var(--blue-400);
+    border-radius: 8px;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+}
+.card-style button:hover{
+    background-color: var(--blue-500);
+}
+
+
+
+/* STILE NOVITA' */
+.novità{
+    background-color: var(--blue-50);
+    padding: 20px 10% 40px 10%;
+    margin-top: 5rem;
+}
+.novità-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.novità-header h3{
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--gray-900);
+}
+.novità-content{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 50px;
+}
+.novità-card{
+    background-color: var(--bacground-contrast);
+    box-shadow: 1px 1px 8px 2px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 400px;
+}
+.novità-card img{
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+}
+.novità-card-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 10px 20px;
+}
+.novità-card h3{
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--gray-900);
+}
+.novità-card button{
+    border: none;
+    background: none;
+    color: var(--blue-400);
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+}
+.novità-card button:hover{
+    color: var(--blue-600);
+    border-bottom: 1px solid var(--blue-600);
+}
+
+
+
+/* STILE SEZIONE RECENSIONE */
+.recensione{
+    width: 80%;
+    margin: auto;
+    margin-top: 5rem;
+}
+.card-recensione{  
+    background-color: var(--bacground-contrast);
+    box-shadow: 1px 1px 8px 2px rgba(0,0,0,0.05); 
+    padding: 20px 50px 40px 50px;
+}
+.card-recensione h3{
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--gray-900);
+}
+.card-recensione p{
+    font-size: 16px;
+    color: var(--gray-400);
+}
+.container-recensioni{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.container-recensioni button{
+    background-color: var(--blue-400);
+    border-radius: 8px;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+}
+.container-recensioni button:hover{
+    background-color: var(--blue-500);
+    cursor: pointer;
+}
+
+
+
+/* STILE MODALE CARD */
+.background {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.45);
+    z-index: 1000;
+}
+.credit-info-modale {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 8px;
+    width: 500px;
+    z-index: 1100;
+    flex-direction: column;
+}
+.title-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px 20px 20px;
+}
+.title-modale {
+    color: var(--blue-600);
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--gray-200);
+}
+.tools{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 0px 20px 20px 20px;
+}
+.modale-close {
+    background: #fff;
+    border: 2px solid var(--gray-200);
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--blue-500);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.2);
+    transition: background 0.2s, color 0.2s, border 0.2s;
+    z-index: 10;
+}
+.modale-close:hover {
+    background: var(--blue-50);
+    color: var(--blue-700);
+    border: 2px solid var(--blue-200);
+}
+.card-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 8px;
+}
+.card-preview .finhub-card {
+    --w: 400px;
+    margin-bottom: 0;
+    box-shadow: 0 4px 18px rgba(0,91,181,0.13);
+    font-size: 1rem;
+}
+.info-section {
+    background: var(--gray-50);
+    border-radius: 10px;
+    border-left: 3px solid var(--blue-500);
+    margin: 1rem auto;
+    box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.05);
+    width: 82%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+}
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+}
+.info-item label {
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.7px;
+}
+.info-item .value {
+    font-size: 1.01rem;
+    font-weight: bold;
+    color: var(--gray-900);
+    font-family: 'Courier New', monospace;
+    background: white;
+    padding: 10px 0px 10px 0px;
+    border-radius: 6px;
+    border: 1px solid var(--gray-200);
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+    min-width: 90px;
+    max-width: 100%;
+    white-space: nowrap;
+    user-select: none;
+    letter-spacing: 0.04em;
+}
+.info-item .value.masked {
+    letter-spacing: 0.2em;
+    color: transparent;
+    text-shadow: 0 0 0 #333;
+    background: white;
+    position: relative;
+}
+.info-item .value.masked::after {
+    content: attr(data-mask);
+    color: #333;
+    letter-spacing: 0.2em;
+    font-size: 1.01rem;
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+.info-item .value.unmasked {
+    color: var(--gray-900);
+    text-shadow: none;
+}
+.card-action-btn {
+    padding: 10px 22px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.card-action-btn.primary {
+    background: var(--blue-500);
+    color: white;
+}
+.card-action-btn.primary:hover {
+    background: var(--blue-600);
+    transform: translateY(-2px);
+}
+.card-action-btn.secondary {
+    background-color: var(--blue-400);
+    color: white;
+    border: 1px solid var(--gray-300);
+}
+.card-action-btn.secondary.active {
+    background: var(--blue-100);
+    color: var(--blue-700);
+    border-color: var(--blue-300);
+}
+.card-action-btn.secondary:hover {
+    background: var(--gray-200);
+}
+.credit-info-modale {
+    max-width: 480px;
+    width: 100%;
+    padding: 32px 24px;
+    box-sizing: border-box;
+    max-height: 80vh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+
+
+
+

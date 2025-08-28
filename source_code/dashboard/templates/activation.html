@@ -1,0 +1,26 @@
+
+<!-- ACTIVATON PROFILE TEMPLATE -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8">
+    <title>FCHB - Attivazione account</title>
+    <link rel="icon" href="{% static 'image/IconWeb.png' %}" type="image/png">
+
+    <!-- IMPORT CSS -->
+    <link rel="stylesheet" href="{% static 'css/activation.css' %}">
+  </head>
+  <body>
+
+    <div class="container-login">
+      <div class="login-card">
+        <h2>Attiva il tuo account</h2>
+        <div id="activation-message">Sto attivando il tuo account…</div>
+      </div>
+    </div>
+
+    <script src="{% static 'js/activation.js' %}"></script>
+  </body>
+</html>
+

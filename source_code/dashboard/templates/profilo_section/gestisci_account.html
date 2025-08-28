@@ -1,0 +1,108 @@
+
+<!-- PROFILE SECTION - GESTISCI ACCOUNT -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FCHB - Gestisci Account</title>
+        <link rel="icon" href="{% static 'image/IconWeb.png' %}" type="image/png">
+
+        <!-- STYLE CSS IMPORT  -->
+        <link rel="stylesheet" href="{% static 'css/componenti.css' %}">
+        <link rel="stylesheet" href="{% static 'css/profile_section/profile.css' %}">
+        <link rel="stylesheet" href="{% static 'css/profile_section/gestisci_account.css' %}">
+    </head>
+
+    <body>
+        {% include 'components/navbar.html' %}
+
+        <div class="header-container">
+            <div class="title-container-header">
+                <div class="img-circle-container">
+                    <img src="{% static 'image/users.jpg' %}" alt="User">
+                </div>
+                    
+                <h3>Gestisci Account</h3>
+            </div>
+
+            <div class="menu-trace">
+                <a href="{% url 'homepage' %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <path d="M3 10.29L12 3l9 7.29V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1v-9.71z"/>
+                    </svg>
+                </a>
+                <p class="arrow-right">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                        <path d="M8 4l8 8-8 8V4z"/>
+                    </svg>
+                </p>
+                <a href="{% url 'profile-page' %}" class="subtitle-menu-trace">Dati Profilo</a>
+                <p class="arrow-right">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                        <path d="M8 4l8 8-8 8V4z"/>
+                    </svg>
+                </p>
+                <p class="subtitle-menu-trace">Gestisci Account</p>
+            </div>
+        </div>
+
+        <div class="main-container">
+            <div class="container-informazioni-account">
+                <h3>Gestisci i dati del tuo account</h3>
+
+                <div class="celle-dati">
+                    <div class="celle-dati-content">
+                        <h5>Nome Utente:</h5>
+                        <input id="username-field" name="username" class="input-field not-active" type="text" value="email@email.com" readonly>
+                    </div>
+                    <div class="celle-dati-tools">
+                        <button id="edit-email-btn">modifica</button>
+                        <button id="cancel-email-btn" style="display:none;">cancella</button>
+                    </div>
+                </div>
+                    
+                <div class="celle-dati">
+                    <div class="celle-dati-content">
+                        <h5>Numero Telefono:</h5>
+                        <input id="phone-field" name="phone" class="input-field not-active" type="text" value="1234567890" readonly>
+                    </div>
+                    <div class="celle-dati-tools">
+                        <button id="edit-phone-btn">modifica</button>
+                        <button id="cancel-phone-btn" style="display:none;">cancella</button>
+                    </div>
+                </div>
+
+                <div class="celle-dati">
+                    <div class="celle-dati-content">
+                        <h5>Password:</h5>
+                        <input id="password-field" name="password" class="input-field not-active" type="password" value="********" readonly>
+                    </div>
+                    <div class="celle-dati-tools">
+                        <button onclick="window.location.href='{% url 'password-reset-request' %}'">modifica</button>
+                    </div>
+                </div>
+                    
+                <h3 style="margin-top: 2rem;">Aggiungi pin per l'autenticazione</h3>
+
+                <div class="celle-dati">
+                    <div class="celle-dati-content">
+                        <h5>Pin Utente:</h5>
+                        <input id="pin-field" name="pin" class="input-field not-active" type="text" value="non inserito">
+                    </div>
+                    <div class="celle-dati-tools">
+                        <button>modifica</button>
+                        <button id="canc-btn">cancella</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {% include 'components/footer.html' %}
+    </body>
+
+    <script src="{% static 'js/profile_section/gestisci_account.js' %}"></script>
+    <script src="{% static 'js/navbar.js' %}"></script>
+</html>

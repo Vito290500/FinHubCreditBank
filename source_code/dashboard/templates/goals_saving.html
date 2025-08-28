@@ -1,0 +1,157 @@
+<!-- GOALS SAVING TEMPLATE -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>FCHB - Goals saving</title>
+    <link rel="icon" href="{% static 'image/IconWeb.png' %}" type="image/png">
+    
+    <!-- IMPORT CSS -->
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/componenti.css' %}">
+    <link rel="stylesheet" href="{% static 'css/goals_saving.css' %}">
+
+    </head>
+
+    <body>
+        {% include 'components/navbar.html' %}
+
+        <div id="custom-modal" class="custom-modal" style="display:none;">
+            <div class="custom-modal-content">
+                <span class="custom-modal-close" id="custom-modal-close">&times;</span>
+                <div id="custom-modal-message"></div>
+                <div id="custom-modal-actions"></div>
+            </div>
+        </div>
+
+        <div class="header-container">
+
+            <div class="title-container-header">
+
+                <div class="img-circle-container">
+                    <img src="{% static 'image/operazioni/goals.png' %}" alt="User">
+                </div>
+                
+                <h3>Goals Saving</h3>
+            </div>
+
+            <div class="menu-trace">
+                <a href="{% url 'homepage' %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <path d="M3 10.29L12 3l9 7.29V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1v-9.71z"/>
+                    </svg>
+                </a>
+                <p class="arrow-right">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                        <path d="M8 4l8 8-8 8V4z"/>
+                    </svg>
+                </p>
+                <p class="subtitle-menu-trace">All goals</p>
+            </div>
+        </div>
+
+        <div class="main-container">
+            <div class="goals-container">
+                <h3>Obiettivi di Risparmio</h3>
+                <button id="add-goal-btn">+ Nuovo Obiettivo</button>
+            </div>
+
+            <div id="goals-list"></div>
+
+            <!-- Modal per aggiungere/modificare goal -->
+            <div id="goal-modal" class="modal">
+                <div class="modal-content">
+                    <div class="header-modal-container">
+                        <h3 id="modal-title">Nuovo Obiettivo</h3>
+                        <span class="close" id="close-modal">&times;</span>
+                    </div>
+                    
+                    <form id="goal-form">
+                        <div class="input-celle">
+                            <label>Nome</label>
+                            <input type="text" id="goal-nome" required>
+                        </div>
+
+                        <div class="input-celle">
+                            <label>Importo Target (€)</label>
+                            <input type="number" id="goal-importo" min="1" step="0.01" required>
+                        </div>
+
+                        <div class="input-celle">
+                            <label>Colore</label>
+                            <select id="goal-colore" required>
+                                <option value="#3498db">🔵 Blu</option>
+                                <option value="#2ecc71">🟢 Verde</option>
+                                <option value="#e74c3c">🔴 Rosso</option>
+                                <option value="#f39c12">🟠 Arancione</option>
+                                <option value="#9b59b6">🟣 Viola</option>
+                                <option value="#1abc9c">🟡 Turchese</option>
+                                <option value="#e91e63">🩷 Rosa</option>
+                                <option value="#3f51b5">🟦 Indaco</option>
+                            </select>
+                        </div>
+
+                        <div class="input-celle">
+                            <label>Data Limite</label>
+                            <input type="date" id="goal-data">
+                        </div>
+
+                        <div class="input-celle">
+                            <label>Periodicità</label>
+                            <select id="goal-periodicita">
+                                <option value="">Nessuna</option>
+                                <option value="WEEKLY">Settimanale</option>
+                                <option value="MONTHLY">Mensile</option>
+                                <option value="QUARTERLY">Trimestrale</option>
+                                <option value="BIANNUAL">Semestrale</option>
+                                <option value="YEARLY">Annuale</option>
+                            </select>
+                        </div>
+
+
+                        <div class="input-celle">
+                            <label>Importo per Periodo</label>
+                            <input type="number" id="goal-importo-periodo" min="0" step="0.01">
+                        </div>
+                        <button type="submit" id="save-goal-btn">Salva</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal per versamento manuale -->
+            <div id="versamento-modal" class="versamento-modal">
+                <div class="versamento-modal-content">
+                    <h3 id="versamento-title">Aggiungi Denaro</h3>
+                    <form id="versamento-form">
+                        <div class="input-celle">
+                            <label for="versamento-importo">Importo (€)</label>
+                            <input type="number" id="versamento-importo" min="0.01" step="0.01" required>
+                        </div>
+                        <div class="input-celle">
+                            <label for="versamento-descrizione">Descrizione</label>
+                            <textarea id="versamento-descrizione" placeholder="Versamento manuale"></textarea>
+                        </div>
+                        <div class="modal-actions">
+                            <button type="button" class="btn-cancel" id="versamento-cancel">Annulla</button>
+                            <button type="submit" class="btn-confirm">Conferma</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Spinner -->
+            <div id="spinner-overlay" class="spinner-overlay" style="display: none;">
+                <div class="spinner"></div>
+            </div>
+        </div>
+
+        {% include 'components/footer.html' %}
+
+        <script src="{% static 'js/auth-utils.js' %}"></script>
+        <script src="{% static 'js/goalSaving.js' %}"></script>
+        <script src="{% static 'js/navbar.js' %}"></script>
+    </body>
+</html> 

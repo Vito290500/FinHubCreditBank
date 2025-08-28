@@ -1,0 +1,271 @@
+
+<!-- BONIFICO TEMPLATE -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>FCHB - Bonifico</title>
+    <link rel="icon" href="{% static 'image/IconWeb.png' %}" type="image/png">
+    
+    <!-- IMPORT CSS -->
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/componenti.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bonifico.css' %}">
+  </head>
+
+  <body>
+    {% include 'components/navbar.html' %}
+
+    <div class="header-container">
+
+      <div class="title-container-header">
+
+        <div class="img-circle-container">
+          <img src="{% static 'image/operazioni/bonificoSepa.png' %}" alt="User">
+        </div>
+              
+        <h3>Bonifico SEPA</h3>
+      </div>
+
+      <div class="menu-trace">
+        <a href="{% url 'homepage' %}">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M3 10.29L12 3l9 7.29V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1v-9.71z"/>
+          </svg>
+        </a>
+        <p class="arrow-right">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M8 4l8 8-8 8V4z"/>
+          </svg>
+        </p>
+        <p class="subtitle-menu-trace">Form Bonifico</p>
+      </div>
+
+    </div>
+
+    <div class="main-container">
+      
+      <form id="bonifico-form">
+
+        <div class="header-title-container">
+          <h3 class="main-title">Checkout</h3>
+            <button type="button" id="rubrica-btn" class="rubrica-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+                  stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;">
+
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                  <path d="M16 2v4"/><path d="M8 2v4"/>
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M12 15v1"/>
+
+                </svg>
+                Rubrica
+            </button>
+        </div>
+          
+        <div class="container-dati-utenti">
+          <div class="container-dati-mittente">
+            <h3>Dati del mittente</h3>
+
+            <div class="container-dati-mittente-content">
+              <div class="celle-dati">
+                <p class="celle-dati-title">Nome entità / persona</p>
+                <div class="input-icon-wrapper">
+                  <svg viewBox="0 0 24 24" width="20" height="20">
+                    <path d="M12 12c2.7 0 8 1.34 8 4v2H4v-2c0-2.66 5.3-4 8-4zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+                  </svg>
+                  <input class="celle-dati-value" name="mittente-nome">
+                </div>
+              </div>
+
+              <div class="celle-dati">
+                <p class="celle-dati-title">Email:</p>
+                <div class="input-icon-wrapper">
+                  <svg viewBox="0 0 24 24" width="20" height="20">
+                    <path d="M4 4h16v16H4V4zm8 7l8-5H4l8 5zm0 2l-8-5v10h16V8l-8 5z"/>
+                  </svg>
+                  <input class="celle-dati-value" name="mittente-email">
+                </div>
+              </div>
+
+              <div class="celle-dati">
+                <p class="celle-dati-title">IBAN:</p>
+                <div class="input-icon-wrapper">
+                  <svg viewBox="0 0 24 24" width="20" height="20">
+                    <rect x="2" y="6" width="20" height="12" rx="2"/>
+                    <path d="M2 10h20"/>
+                  </svg>
+                  <input class="celle-dati-value" name="mittente-iban">
+                </div>
+              </div>
+
+              <div class="celle-dati">
+                <p class="celle-dati-title">Città di residenza:</p>
+                <div class="input-icon-wrapper">
+                  <svg viewBox="0 0 24 24" width="20" height="20">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/>
+                  </svg>
+                  <input class="celle-dati-value" name="mittente-citta">
+                </div>
+              </div>
+                          
+            </div>
+          </div>
+
+          <div class="container-dati-destinatario">
+            <h3>Dati del destinatario</h3>
+              <div class="container-dati-destinatario-content">
+                <div class="container-dati-destinatario-content-item">
+
+                  <div class="celle-dati">
+                    <p class="celle-dati-title">Nome entità / persona:</p>
+                    <div class="input-icon-wrapper">
+                      <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 12c2.7 0 8 1.34 8 4v2H4v-2c0-2.66 5.3-4 8-4zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
+                      <input class="celle-dati-value" placeholder="Inserisci il nome o entità">
+                    </div>
+                  </div>
+
+                  <div class="celle-dati">
+                    <p class="celle-dati-title">Email:</p>
+                    <div class="input-icon-wrapper">
+                      <svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 4h16v16H4V4zm8 7l8-5H4l8 5zm0 2l-8-5v10h16V8l-8 5z"/></svg>
+                        <input class="celle-dati-value" placeholder="Inserisci l'email">
+                    </div>
+                  </div>
+
+                  <div class="celle-dati">
+                    <p class="celle-dati-title">IBAN:</p>
+                      <div class="input-icon-wrapper">
+                        <svg viewBox="0 0 24 24" width="20" height="20"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20"/></svg>
+                          <input class="celle-dati-value" placeholder="Inserisci l'IBAN">
+                      </div>
+                  </div>
+
+                  <div class="celle-dati">
+                    <p class="celle-dati-title">Città di residenza:</p>
+                    <div class="input-icon-wrapper">
+                      <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+                        <input class="celle-dati-value" placeholder="Inserisci la città di residenza">
+                    </div>
+                  </div>
+                          
+                </div>        
+              </div>
+          </div>
+        </div>
+
+        <div class="other-spec">
+          <h3>Altre specifiche</h3>
+          <div class="other-spec-grid">
+
+            <div class="celle-dati">
+              <p class="celle-dati-title">Clausola:</p>
+              <div class="input-icon-wrapper">
+                <svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 4h16v16H4V4zm2 4h12v2H6V8zm0 4h12v2H6v-2zm0 4h8v2H6v-2z"/></svg>
+                  <input class="celle-dati-value" placeholder="Inserisci qui una motivazione">
+              </div>
+            </div>
+
+            <div class="celle-dati">
+              <p class="celle-dati-title">Categoria:</p>
+              <div class="input-icon-wrapper">
+                <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                  <input class="celle-dati-value" placeholder="Scrivi qui la categoria">
+              </div>
+            </div>
+
+            <div class="celle-dati">
+              <p class="celle-dati-title">Importo:</p>
+                <div class="input-icon-wrapper">
+                  <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6" stroke-width="2" stroke="currentColor" fill="none"/></svg>
+                  <input class="celle-dati-value" placeholder="Inserisci l'importo">
+                </div>
+            </div>
+
+          </div>
+
+          <div class="celle-dati celle-dati-nota">
+            <p class="celle-dati-title">Nota:</p>
+            <div class="input-icon-wrapper">
+              <textarea class="celle-dati-value" placeholder="Scrivi qui una nota testuale" rows="2" style="resize:vertical;"></textarea>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="container-button"> 
+          <button type="submit">Invia bonifico</button>   
+        </div>
+
+      </form>
+
+    </div>
+
+    {% include 'components/footer.html' %}
+
+    <!-- Modale PIN per autorizzazione bonifico -->
+    <div id="pin-modal" class="modal-pin">
+      <div class="modal-content-pin">
+        <div id="pin-loader" class="pin-loader" style=></div>
+
+        <h3 id="pin-modal-title">Transizione iniziata</h3>
+        <p id="pin-modal-message">Inserisci il PIN per autorizzare il bonifico</p>
+        <input type="password" id="pin-input" maxlength="6" placeholder="PIN" autocomplete="off" class="pin-input">
+        <button id="pin-confirm-btn" class="pin-btn">Autorizza</button>
+        <button id="pin-cancel-btn" class="pin-btn pin-cancel">Annulla</button>
+
+        <div id="pin-error" class="pin-error"></div>
+      </div>
+    </div>
+
+    <!-- Modale successo bonifico -->
+    <div id="success-modal" class="modal-pin">
+      <div class="modal-content-pin">
+        <button id="close-success-modal-btn" class="close-modal-x" type="button" aria-label="Chiudi">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="11" stroke="#4BB543" stroke-width="2.5" fill="#fff"/>
+            <path d="M15 9l-6 6M9 9l6 6"/>
+          </svg>
+        </button>
+        <h3 class="success-title" style="color:#4BB543;">Successo</h3>
+        <div class="success-desc">Bonifico avvenuto correttamente</div>
+        <div class="success-icon-animated">
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="30" stroke="#4BB543" stroke-width="4" fill="#eafaf1"/>
+            <path d="M20 34L29 43L46 26" stroke="#4BB543" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="success-actions-row">
+          <button id="view-receipt-btn" class="pin-btn anteprima-btn">Anteprima ricevuta</button>
+          <button id="save-contact-btn" class="pin-btn">Salva destinatario</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modale rubrica destinatari  -->
+    <div id="rubrica-modal" class="modal-pin">
+      <div class="modal-content-pin">
+
+        <div class="rubrica-modal-header" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.7rem;">
+          <h3 class="rubrica-modal-title" style="margin:0;">Rubrica destinatari</h3>
+          <button id="rubrica-close-x-btn" class="close-modal-x" type="button" aria-label="Chiudi">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="11" stroke="#2563eb" stroke-width="2.5" fill="#fff"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+          </button>
+        </div>
+
+        <div id="rubrica-list" class="rubrica-list"></div>
+      </div>
+    </div>
+
+    <!-- IMPORT CDN END OF BODY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- IMPORT JS END OF BODY -->
+    <script src="{% static 'js/auth-utils.js' %}"></script>
+    <script src="{% static 'js/navbar.js' %}"></script>
+    <script src="{% static 'js/bonifico.js' %}"></script>
+  </body>
+</html> 

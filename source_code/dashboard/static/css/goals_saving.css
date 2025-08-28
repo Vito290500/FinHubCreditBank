@@ -1,0 +1,416 @@
+body{
+    padding: 0;
+    margin: 0;
+    background-color: var(--gray-100);
+}
+.title-container-header img{
+    width: 50px !important;
+    height: 50px !important;
+}
+.img-circle-container{
+    height: 50px !important;
+    width: 50px !important;
+}
+
+
+/* STILE CONTAINER MAIN*/
+.main-container{
+    width: 80%;
+    margin: auto;
+    margin-top: 3rem;
+    background-color: var(--bacground-contrast);
+    box-shadow: 1px 1px 8px 2px rgba(0,0,0,0.05);
+    padding: 25px 20px 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-height: 380px;
+}
+.main-title{
+  color: var(--blue-500)!important;
+  font-size: 20px !important;
+  font-weight: bold;
+  margin: 0;
+}
+.header-title-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+
+
+/* STILE LISTA GOALS SAVING */
+.goals-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -1rem;
+}
+.goals-container h3 {
+    font-size: 22px;
+  color: var(--blue-500);
+}
+#add-goal-btn {
+  background: var(--blue-400);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#add-goal-btn:hover{
+    background-color: var(--blue-500);
+}
+.goal-card {
+  background: #f7fafc;
+  border-radius: 8px;
+  padding: 0px 20px 20px 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.goal-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.goal-title{
+  font-weight: bold;
+  color: var(--blue-300);
+  font-size: 20px;
+}
+.goal-amounts,
+.goal-details{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 50px;
+}
+.goal-progress-bar {
+  background: #e2e8f0;
+  border-radius: 6px;
+  height: 12px;
+  width: 100%;
+  margin: 6px 0;
+  overflow: hidden;
+}
+.goal-progress {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.4s, background-color 0.3s ease;
+}
+.goal-actions {
+  margin-top: 8px;
+}
+.goal-actions button {
+  background: var(--blue-400);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 8px;
+  font-size: 0.95em;
+}
+.goal-actions button:hover{
+    background-color: var(--blue-500);
+}
+#goals-list{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.edit{
+    background-color: var(--blue-400);
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    color: #fff;
+    cursor: pointer;
+}
+.edit:hover{
+    background-color: var(--blue-500);
+}
+.delete{
+    background-color: var(--error-300);
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    color: #fff;
+    cursor: pointer;
+}
+.delete:hover{
+    background-color: #b32626;
+}
+
+
+
+
+
+/* STILE MODALE NUOVO OBBIETTIVO */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.3);
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  width: 500px;
+}
+.header-modal-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#modal-title{
+    color: var(--blue-500);
+}
+.close {
+  font-size: 1.8em;
+  cursor: pointer;
+  color: #888;
+}
+#goal-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.input-celle{
+    width: 100%;
+}
+#goal-form label {
+  display: block;
+  color: var(--gray-400);
+  margin-bottom: 5px;
+}
+#goal-form input, #goal-form select {
+  width: 100%;
+  border: 1px solid #cbd5e0;
+  border-radius: 4px;
+  font-size: 1em;
+  padding-block: 0!important;
+  padding-inline: 0!important;
+  padding: 10px!important;
+  max-width: 480px;
+}
+#goal-form select {
+    max-width: 500px !important;
+}
+#save-goal-btn {
+  margin-top: 18px;
+  background: #38a169;
+  color: #fff;
+  border: none;
+  padding: 10px 0;
+  border-radius: 6px;
+  width: 100%;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+.custom-modal {
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.4);
+  display: flex; align-items: center; justify-content: center;
+}
+.custom-modal-content {
+  background: #fff;
+  border-radius: 10px;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  min-width: 300px;
+  max-width: 90vw;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  position: relative;
+  text-align: center;
+}
+.custom-modal-close {
+  position: absolute;
+  right: 1rem; top: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #888;
+}
+.custom-modal button {
+  margin: 1rem 0.5rem 0 0.5rem;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  background: #4caf50;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.custom-modal button.cancel {
+  background: #e57373;
+}
+
+
+
+/* STILE SPINNER */
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+
+
+
+/* STILE PER LA SELECT DEI COLORI */
+#goal-colore {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+}
+#goal-colore option {
+  padding: 5px;
+}
+.goal-card.colored-goal h3 {
+  transition: color 0.3s ease;
+}
+.goal-progress {
+  transition: background-color 0.3s ease;
+}
+
+
+
+/* STILE MODALE PER IL VERSAMENTO MANUALE */
+.versamento-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+.versamento-modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  animation: slideIn 0.3s ease;
+}
+.versamento-modal h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.versamento-modal .input-celle {
+  margin-bottom: 20px;
+}
+.versamento-modal label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+  font-size: 14px;
+}
+.versamento-modal input, .versamento-modal textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+.versamento-modal input:focus, .versamento-modal textarea:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+.versamento-modal textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-family: inherit;
+}
+.versamento-modal .modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 25px;
+}
+.versamento-modal button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+.versamento-modal .btn-cancel {
+  background-color: #e57373;
+  color: white;
+}
+.versamento-modal .btn-cancel:hover {
+  background-color: #d32f2f;
+  transform: translateY(-1px);
+}
+.versamento-modal .btn-confirm {
+  background-color: #4caf50;
+  color: white;
+}
+.versamento-modal .btn-confirm:hover {
+  background-color: #45a049;
+  transform: translateY(-1px);
+}
+.no-goals-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: #666;
+  font-size: 1.2rem;
+  text-align: center;
+  min-height: 300px; 
+}
+
+
+
+/* ANIMAZIONi */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes slideIn {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

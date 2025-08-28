@@ -1,0 +1,80 @@
+<!-- LOGIN TEMPLATE -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="it">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>FHCB – Login</title>
+    <link rel="icon" href="{% static 'image/IconWeb.png' %}" type="image/png">
+
+    <!-- STYLE CSS IMPORT  -->
+    <link rel="stylesheet" href="{% static 'css/login_register.css' %}">
+  </head>
+
+  <body>
+
+    <div class="backdrop"></div>
+    <div class="container-login">
+
+      <div class="login-aside">
+        <div class="aside-content">
+
+          <img src="{% static 'image/logo.png' %}" alt="">
+          <h2>Il tuo conto intelligente</h2>
+          <p>Saldo e movimenti in tempo reale, spese categorizzate automaticamente e dashboard interattiva per monitorare i tuoi obiettivi. Semplice, sicuro e sempre con te.</p>
+          
+          <p class="mt-4">Non hai un account?
+            <a href="{% url 'register' %}" class="link">Registrati</a>
+          </p>
+
+        </div>
+      </div>
+
+      <div class="login-main">
+        <div class="login-card">
+          <h2>Login</h2>
+
+          <div id="error" class="error-msg"></div>
+
+          <form id="login-form" class="form" method="post">
+
+            <div class="form-group">
+              <div class="header-input">
+                <img src="{% static 'image/email.png' %}" alt="">
+                <p>Email</p>
+              </div>
+
+              <input type="email" id="email" name="email" placeholder="es. nome@esempio.com" required>
+              
+              <span class="field-error" id="email-error"></span>
+            </div>
+            
+            <div class="form-group">
+              <div class="header-input">
+                <img src="{% static 'image/password.png' %}" alt="">
+                <p>Password</p>
+              </div>
+
+              <input type="password" id="password" name="password" placeholder="Inserisci la tua password" required>
+             
+              <span class="field-error" id="password-error"></span>
+            </div>
+
+            <div class="form-footer">
+              <a href="{% url 'password-reset-request' %}">Password dimenticata?</a>
+            </div>
+
+            <button type="submit" class="btn-primary">Accedi</button>
+          </form>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- SCRIPT JS IMPORT -->
+    <script src="{% static 'js/login.js' %}"></script>
+  </body>
+</html>

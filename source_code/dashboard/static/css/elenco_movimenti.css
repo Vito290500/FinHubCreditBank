@@ -1,0 +1,66 @@
+/* STILI SPECIFICI PER LA TABELLA MOVIMENTI */
+
+.transazioni-table.elenco-movimenti-table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+.transazioni-table.elenco-movimenti-table th {
+  background: var(--blue-500) !important;
+  color: #fff !important;
+  margin: 0!important;
+}
+.transazioni-table.elenco-movimenti-table td {
+  background: none;
+}
+.transazioni-table.elenco-movimenti-table th,
+.transazioni-table.elenco-movimenti-table td {
+  border-bottom: 1px solid #f0f2f7;
+  padding: 0.75rem 1.1rem;
+  margin: 0;
+  box-shadow: none;
+  border-radius: 0;
+}
+.transazioni-table.elenco-movimenti-table tr:last-child td {
+  border-bottom: none;
+}
+.transazioni-table.elenco-movimenti-table tr {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-start;
+}
+.transazioni-table.elenco-movimenti-table th:nth-child(1), .transazioni-table.elenco-movimenti-table td:nth-child(1) { /* Tipo */
+  flex: 0 0 90px;
+  min-width: 70px;
+}
+.transazioni-table.elenco-movimenti-table th:nth-child(2), .transazioni-table.elenco-movimenti-table td:nth-child(2) { /* ID */
+  flex: 0 0 180px;
+  min-width: 100px;
+}
+.transazioni-table.elenco-movimenti-table th:nth-child(3), .transazioni-table.elenco-movimenti-table td:nth-child(3) { /* Nome */
+  flex: 2 1 220px;
+  min-width: 120px;
+}
+.transazioni-table.elenco-movimenti-table th:nth-child(4), .transazioni-table.elenco-movimenti-table td:nth-child(4) { /* Data */
+  flex: 0 0 120px;
+  min-width: 90px;
+}
+.transazioni-table.elenco-movimenti-table th:nth-child(5), .transazioni-table.elenco-movimenti-table td:nth-child(5) { /* Importo */
+  flex: 0 0 110px;
+  min-width: 80px;
+}
+.transazioni-table.elenco-movimenti-table th:nth-child(6), .transazioni-table.elenco-movimenti-table td:nth-child(6) { /* Controparte/Origin */
+  flex: 1 1 160px;
+  min-width: 100px;
+}
+.transazioni-table.elenco-movimenti-table th:nth-child(7), .transazioni-table.elenco-movimenti-table td:nth-child(7) { /* Categoria/Descrizione */
+  flex: 1 1 140px;
+  min-width: 90px;
+}
+.transazioni-table.elenco-movimenti-table th:nth-child(8), .transazioni-table.elenco-movimenti-table td:nth-child(8) { /* Scarica */
+  flex: 0 0 90px;
+  min-width: 70px;
+} 
+#movimenti-tbody{
+  height: 226px;
+}

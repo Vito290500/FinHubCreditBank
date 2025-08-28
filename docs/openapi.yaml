@@ -1,0 +1,1935 @@
+openapi: 3.0.3
+info:
+  title: Personal Finance Hub API
+  version: 1.0.0
+  description: Saldo conti, movimenti, bonifici e documenti
+paths:
+  /api/accounts/:
+    get:
+      operationId: api_accounts_list
+      parameters:
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BankAccount'
+          description: ''
+  /api/accounts/contacts/:
+    get:
+      operationId: api_accounts_contacts_retrieve
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: api_accounts_contacts_create
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/accounts/contacts/{id}/:
+    delete:
+      operationId: api_accounts_contacts_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/accounts/me/:
+    get:
+      operationId: api_accounts_me_retrieve
+      description: Api per il retrive e update dei dati dell'account.
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountWithProfile'
+          description: ''
+    put:
+      operationId: api_accounts_me_update
+      description: Api per il retrive e update dei dati dell'account.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountWithProfile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AccountWithProfile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AccountWithProfile'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountWithProfile'
+          description: ''
+    patch:
+      operationId: api_accounts_me_partial_update
+      description: Api per il retrive e update dei dati dell'account.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedAccountWithProfile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedAccountWithProfile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedAccountWithProfile'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountWithProfile'
+          description: ''
+  /api/accrediti/:
+    get:
+      operationId: api_accrediti_list
+      description: Api per la l'accredito.
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedAccreditoList'
+          description: ''
+  /api/accrediti/{id}/:
+    get:
+      operationId: api_accrediti_retrieve
+      description: Api per la l'accredito.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Accredito'
+          description: ''
+  /api/categoria-chart/:
+    get:
+      operationId: api_categoria_chart_retrieve
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/categories/:
+    get:
+      operationId: api_categories_list
+      parameters:
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+          description: ''
+  /api/dashboard-data/:
+    get:
+      operationId: api_dashboard_data_retrieve
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/dashboard-stats/:
+    get:
+      operationId: api_dashboard_stats_retrieve
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/entrate-uscite-chart/:
+    get:
+      operationId: api_entrate_uscite_chart_retrieve
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/estratti-conto/:
+    get:
+      operationId: api_estratti_conto_list
+      parameters:
+      - name: cursor
+        required: false
+        in: query
+        description: The pagination cursor value.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedEstrattoContoList'
+          description: ''
+  /api/estratti-conto/{estratto_id}/movimenti/:
+    get:
+      operationId: api_estratti_conto_movimenti_retrieve
+      parameters:
+      - in: path
+        name: estratto_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/goals-saving/:
+    get:
+      operationId: api_goals_saving_list
+      parameters:
+      - name: cursor
+        required: false
+        in: query
+        description: The pagination cursor value.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedGoalsSavingList'
+          description: ''
+    post:
+      operationId: api_goals_saving_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GoalsSaving'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GoalsSaving'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GoalsSaving'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoalsSaving'
+          description: ''
+  /api/goals-saving/{id}/:
+    get:
+      operationId: api_goals_saving_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoalsSaving'
+          description: ''
+    put:
+      operationId: api_goals_saving_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GoalsSaving'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GoalsSaving'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GoalsSaving'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoalsSaving'
+          description: ''
+    patch:
+      operationId: api_goals_saving_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedGoalsSaving'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedGoalsSaving'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedGoalsSaving'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoalsSaving'
+          description: ''
+    delete:
+      operationId: api_goals_saving_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/goals-saving/{id}/add-money/:
+    post:
+      operationId: api_goals_saving_add_money_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/token/:
+    post:
+      operationId: api_token_create
+      description: |-
+        Takes a set of user credentials and returns an access and refresh JSON web
+        token pair to prove the authentication of those credentials.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomTokenObtainPair'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CustomTokenObtainPair'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CustomTokenObtainPair'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomTokenObtainPair'
+          description: ''
+  /api/transactions/:
+    get:
+      operationId: api_transactions_list
+      description: Restituisce paginazione di tutte le transazioni dell’utente.
+      summary: Elenca le transazioni
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedTransactionList'
+          description: ''
+  /api/transactions/{id}/:
+    get:
+      operationId: api_transactions_retrieve
+      description: Restituisce i dettagli di una singola transazione per `id`.
+      summary: Dettaglio transazione
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this transaction.
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionDetail'
+          description: ''
+  /api/transfer/:
+    post:
+      operationId: api_transfer_create
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /auth/jwt/create/:
+    post:
+      operationId: auth_jwt_create_create
+      description: |-
+        Takes a set of user credentials and returns an access and refresh JSON web
+        token pair to prove the authentication of those credentials.
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenObtainPair'
+          description: ''
+  /auth/jwt/refresh/:
+    post:
+      operationId: auth_jwt_refresh_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+  /auth/jwt/verify/:
+    post:
+      operationId: auth_jwt_verify_create
+      description: |-
+        Takes a token and indicates if it is valid.  This view provides no
+        information about a token's fitness for a particular use.
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenVerify'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenVerify'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenVerify'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenVerify'
+          description: ''
+  /auth/token/login/:
+    post:
+      operationId: auth_token_login_create
+      description: Use this endpoint to obtain user authentication token.
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomTokenCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CustomTokenCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CustomTokenCreate'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomTokenCreate'
+          description: ''
+  /auth/token/logout/:
+    post:
+      operationId: auth_token_logout_create
+      description: Use this endpoint to logout user (remove user authentication token).
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /auth/users/:
+    get:
+      operationId: auth_users_list
+      parameters:
+      - name: cursor
+        required: false
+        in: query
+        description: The pagination cursor value.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedUserList'
+          description: ''
+    post:
+      operationId: auth_users_create
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreatePasswordRetype'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserCreatePasswordRetype'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserCreatePasswordRetype'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserCreatePasswordRetype'
+          description: ''
+  /auth/users/{id}/:
+    get:
+      operationId: auth_users_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this user.
+        required: true
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    put:
+      operationId: auth_users_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this user.
+        required: true
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    patch:
+      operationId: auth_users_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this user.
+        required: true
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    delete:
+      operationId: auth_users_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this user.
+        required: true
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /auth/users/activation/:
+    post:
+      operationId: auth_users_activation_create
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Activation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Activation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Activation'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Activation'
+          description: ''
+  /auth/users/me/:
+    get:
+      operationId: auth_users_me_retrieve
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    put:
+      operationId: auth_users_me_update
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    patch:
+      operationId: auth_users_me_partial_update
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    delete:
+      operationId: auth_users_me_destroy
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /auth/users/resend_activation/:
+    post:
+      operationId: auth_users_resend_activation_create
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendEmailReset'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SendEmailReset'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SendEmailReset'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendEmailReset'
+          description: ''
+  /auth/users/reset_email/:
+    post:
+      operationId: auth_users_reset_email_create
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendEmailReset'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SendEmailReset'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SendEmailReset'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendEmailReset'
+          description: ''
+  /auth/users/reset_email_confirm/:
+    post:
+      operationId: auth_users_reset_email_confirm_create
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsernameResetConfirm'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UsernameResetConfirm'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UsernameResetConfirm'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsernameResetConfirm'
+          description: ''
+  /auth/users/reset_password/:
+    post:
+      operationId: auth_users_reset_password_create
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendEmailReset'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SendEmailReset'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SendEmailReset'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendEmailReset'
+          description: ''
+  /auth/users/reset_password_confirm/:
+    post:
+      operationId: auth_users_reset_password_confirm_create
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordResetConfirm'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PasswordResetConfirm'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PasswordResetConfirm'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PasswordResetConfirm'
+          description: ''
+  /auth/users/set_email/:
+    post:
+      operationId: auth_users_set_email_create
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetUsername'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetUsername'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetUsername'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetUsername'
+          description: ''
+  /auth/users/set_password/:
+    post:
+      operationId: auth_users_set_password_create
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetPassword'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetPassword'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetPassword'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetPassword'
+          description: ''
+components:
+  schemas:
+    AccountWithProfile:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        iban:
+          type: string
+          maxLength: 34
+        name:
+          type: string
+          maxLength: 120
+        currency:
+          type: string
+          maxLength: 3
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        profile:
+          $ref: '#/components/schemas/Profile'
+        email:
+          type: string
+          format: email
+          readOnly: true
+      required:
+      - created_at
+      - currency
+      - email
+      - iban
+      - id
+      - name
+      - profile
+    Accredito:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        account:
+          type: string
+          format: uuid
+        date:
+          type: string
+          format: date
+          description: Data dell'accredito
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+          description: Importo dell'accredito
+        currency:
+          type: string
+          description: ISO 4217
+          maxLength: 3
+        description:
+          type: string
+        source:
+          type: string
+          description: Origine dell'accredito (es. datore di lavoro, merchant)
+          maxLength: 255
+        notes:
+          type: string
+          description: Annotazioni libere
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - account
+      - amount
+      - created_at
+      - date
+      - id
+      - source
+    Activation:
+      type: object
+      properties:
+        uid:
+          type: string
+        token:
+          type: string
+      required:
+      - token
+      - uid
+    BankAccount:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        iban:
+          type: string
+          maxLength: 34
+        name:
+          type: string
+          maxLength: 120
+        balance:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+        currency:
+          type: string
+          maxLength: 3
+        opened_at:
+          type: string
+          format: date
+          readOnly: true
+      required:
+      - iban
+      - id
+      - name
+      - opened_at
+    BlankEnum:
+      enum:
+      - ''
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+      required:
+      - id
+      - name
+    ColoreEnum:
+      enum:
+      - '#3498db'
+      - '#2ecc71'
+      - '#e74c3c'
+      - '#f39c12'
+      - '#9b59b6'
+      - '#1abc9c'
+      - '#e91e63'
+      - '#3f51b5'
+      type: string
+      description: |-
+        * `#3498db` - Blu
+        * `#2ecc71` - Verde
+        * `#e74c3c` - Rosso
+        * `#f39c12` - Arancione
+        * `#9b59b6` - Viola
+        * `#1abc9c` - Turchese
+        * `#e91e63` - Rosa
+        * `#3f51b5` - Indaco
+    CustomTokenCreate:
+      type: object
+      properties:
+        password:
+          type: string
+        email:
+          type: string
+    CustomTokenObtainPair:
+      type: object
+      properties:
+        email:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+      required:
+      - email
+      - password
+    EstrattoConto:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        mese:
+          type: integer
+          maximum: 32767
+          minimum: 0
+        anno:
+          type: integer
+          maximum: 32767
+          minimum: 0
+        saldo_iniziale:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+        saldo_finale:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+        data_creazione:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - anno
+      - data_creazione
+      - id
+      - mese
+      - saldo_finale
+      - saldo_iniziale
+    GoalsSaving:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        bank_account:
+          type: string
+          format: uuid
+          readOnly: true
+        nome:
+          type: string
+          description: Nome dell'obiettivo (es. Vacanze, Sport, Auto)
+          maxLength: 120
+        importo_target:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+          description: Importo obiettivo da raggiungere
+        importo_attuale:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+          readOnly: true
+          description: Importo attualmente risparmiato
+        colore:
+          allOf:
+          - $ref: '#/components/schemas/ColoreEnum'
+          description: |-
+            Colore dell'obiettivo per la visualizzazione
+
+            * `#3498db` - Blu
+            * `#2ecc71` - Verde
+            * `#e74c3c` - Rosso
+            * `#f39c12` - Arancione
+            * `#9b59b6` - Viola
+            * `#1abc9c` - Turchese
+            * `#e91e63` - Rosa
+            * `#3f51b5` - Indaco
+        data_limite:
+          type: string
+          format: date
+          nullable: true
+          description: Data limite per raggiungere l'obiettivo (facoltativo)
+        periodicita:
+          description: |-
+            Frequenza del versamento (facoltativo)
+
+            * `WEEKLY` - Settimanale
+            * `MONTHLY` - Mensile
+            * `QUARTERLY` - Trimestrale
+            * `BIANNUAL` - Semestrale
+            * `YEARLY` - Annuale
+          oneOf:
+          - $ref: '#/components/schemas/PeriodicitaEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+        importo_periodicita:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+          nullable: true
+          description: Importo da versare per ogni periodo
+        attivo:
+          type: boolean
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        percentuale_completamento:
+          type: string
+          readOnly: true
+        importo_rimanente:
+          type: string
+          readOnly: true
+        is_completato:
+          type: string
+          readOnly: true
+      required:
+      - bank_account
+      - created
+      - id
+      - importo_attuale
+      - importo_rimanente
+      - importo_target
+      - is_completato
+      - nome
+      - percentuale_completamento
+      - updated_at
+    PaginatedAccreditoList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Accredito'
+    PaginatedEstrattoContoList:
+      type: object
+      required:
+      - results
+      properties:
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?cursor=cD00ODY%3D"
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?cursor=cj0xJnA9NDg3
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/EstrattoConto'
+    PaginatedGoalsSavingList:
+      type: object
+      required:
+      - results
+      properties:
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?cursor=cD00ODY%3D"
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?cursor=cj0xJnA9NDg3
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/GoalsSaving'
+    PaginatedTransactionList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+    PaginatedUserList:
+      type: object
+      required:
+      - results
+      properties:
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?cursor=cD00ODY%3D"
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?cursor=cj0xJnA9NDg3
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    PasswordResetConfirm:
+      type: object
+      properties:
+        uid:
+          type: string
+        token:
+          type: string
+        new_password:
+          type: string
+      required:
+      - new_password
+      - token
+      - uid
+    PatchedAccountWithProfile:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        iban:
+          type: string
+          maxLength: 34
+        name:
+          type: string
+          maxLength: 120
+        currency:
+          type: string
+          maxLength: 3
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        profile:
+          $ref: '#/components/schemas/Profile'
+        email:
+          type: string
+          format: email
+          readOnly: true
+    PatchedGoalsSaving:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        bank_account:
+          type: string
+          format: uuid
+          readOnly: true
+        nome:
+          type: string
+          description: Nome dell'obiettivo (es. Vacanze, Sport, Auto)
+          maxLength: 120
+        importo_target:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+          description: Importo obiettivo da raggiungere
+        importo_attuale:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+          readOnly: true
+          description: Importo attualmente risparmiato
+        colore:
+          allOf:
+          - $ref: '#/components/schemas/ColoreEnum'
+          description: |-
+            Colore dell'obiettivo per la visualizzazione
+
+            * `#3498db` - Blu
+            * `#2ecc71` - Verde
+            * `#e74c3c` - Rosso
+            * `#f39c12` - Arancione
+            * `#9b59b6` - Viola
+            * `#1abc9c` - Turchese
+            * `#e91e63` - Rosa
+            * `#3f51b5` - Indaco
+        data_limite:
+          type: string
+          format: date
+          nullable: true
+          description: Data limite per raggiungere l'obiettivo (facoltativo)
+        periodicita:
+          description: |-
+            Frequenza del versamento (facoltativo)
+
+            * `WEEKLY` - Settimanale
+            * `MONTHLY` - Mensile
+            * `QUARTERLY` - Trimestrale
+            * `BIANNUAL` - Semestrale
+            * `YEARLY` - Annuale
+          oneOf:
+          - $ref: '#/components/schemas/PeriodicitaEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+        importo_periodicita:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+          nullable: true
+          description: Importo da versare per ogni periodo
+        attivo:
+          type: boolean
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        percentuale_completamento:
+          type: string
+          readOnly: true
+        importo_rimanente:
+          type: string
+          readOnly: true
+        is_completato:
+          type: string
+          readOnly: true
+    PatchedUser:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        email:
+          type: string
+          format: email
+          readOnly: true
+    PeriodicitaEnum:
+      enum:
+      - WEEKLY
+      - MONTHLY
+      - QUARTERLY
+      - BIANNUAL
+      - YEARLY
+      type: string
+      description: |-
+        * `WEEKLY` - Settimanale
+        * `MONTHLY` - Mensile
+        * `QUARTERLY` - Trimestrale
+        * `BIANNUAL` - Semestrale
+        * `YEARLY` - Annuale
+    Profile:
+      type: object
+      properties:
+        full_name:
+          type: string
+          maxLength: 120
+        phone_number:
+          type: string
+          maxLength: 15
+        birth_date:
+          type: string
+          format: date
+          nullable: true
+        fiscal_code:
+          type: string
+          maxLength: 16
+        city:
+          type: string
+          maxLength: 100
+        postal_code:
+          type: string
+          maxLength: 10
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - updated_at
+    SendEmailReset:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+      required:
+      - email
+    SetPassword:
+      type: object
+      properties:
+        new_password:
+          type: string
+        current_password:
+          type: string
+      required:
+      - current_password
+      - new_password
+    SetUsername:
+      type: object
+      properties:
+        current_password:
+          type: string
+        new_email:
+          type: string
+          format: email
+          title: Email
+          maxLength: 254
+      required:
+      - current_password
+      - new_email
+    TokenObtainPair:
+      type: object
+      properties:
+        email:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+          readOnly: true
+      required:
+      - access
+      - email
+      - password
+      - refresh
+    TokenRefresh:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+      required:
+      - access
+      - refresh
+    TokenVerify:
+      type: object
+      properties:
+        token:
+          type: string
+          writeOnly: true
+      required:
+      - token
+    Transaction:
+      type: object
+      properties:
+        row_number:
+          type: string
+          readOnly: true
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        transaction_name:
+          type: string
+          readOnly: true
+        date:
+          type: string
+          format: date
+          description: Data della transazione
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+          description: Importo positivo per entrate, negativo per uscite
+        currency:
+          type: string
+          description: ISO 4217
+          maxLength: 3
+        destinatario_nome:
+          type: string
+          maxLength: 255
+        category:
+          type: integer
+          nullable: true
+        category_name:
+          type: string
+          readOnly: true
+      required:
+      - amount
+      - category_name
+      - date
+      - id
+      - row_number
+      - transaction_name
+    TransactionDetail:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        category_name:
+          type: string
+          readOnly: true
+        date:
+          type: string
+          format: date
+          description: Data della transazione
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+          description: Importo positivo per entrate, negativo per uscite
+        currency:
+          type: string
+          description: ISO 4217
+          maxLength: 3
+        description:
+          type: string
+        has_document:
+          type: boolean
+          description: Se c'è allegato un documento (ricevuta, fattura, ecc.)
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Timestamp di creazione in DB
+        merchant_name:
+          type: string
+          description: Nome del merchant o controparte
+          maxLength: 255
+        external_id:
+          type: string
+          nullable: true
+          description: ID esterno (es. da importazioni batch)
+          maxLength: 100
+        notes:
+          type: string
+          description: Annotazioni libere
+        mittente_nome:
+          type: string
+          maxLength: 255
+        mittente_email:
+          type: string
+          format: email
+          maxLength: 254
+        mittente_iban:
+          type: string
+          maxLength: 34
+        mittente_citta:
+          type: string
+          maxLength: 100
+        destinatario_nome:
+          type: string
+          maxLength: 255
+        destinatario_email:
+          type: string
+          format: email
+          maxLength: 254
+        destinatario_iban:
+          type: string
+          maxLength: 34
+        destinatario_citta:
+          type: string
+          maxLength: 100
+        clausola:
+          type: string
+          maxLength: 255
+        stato:
+          type: string
+          maxLength: 32
+        id_transazione:
+          type: string
+          maxLength: 100
+        account:
+          type: string
+          format: uuid
+        category:
+          type: integer
+          nullable: true
+      required:
+      - account
+      - amount
+      - category_name
+      - created_at
+      - date
+      - id
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        email:
+          type: string
+          format: email
+          readOnly: true
+      required:
+      - email
+      - id
+    UserCreatePasswordRetype:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        password:
+          type: string
+          writeOnly: true
+        re_password:
+          type: string
+      required:
+      - email
+      - id
+      - password
+      - re_password
+    UsernameResetConfirm:
+      type: object
+      properties:
+        new_email:
+          type: string
+          format: email
+          title: Email
+          maxLength: 254
+      required:
+      - new_email
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

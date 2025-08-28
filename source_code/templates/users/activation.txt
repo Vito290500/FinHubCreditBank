@@ -1,0 +1,8 @@
+Ciao {{ user.get_full_name or user.email }},
+
+Grazie per esserti registrato su {{ site_name }}.
+Per attivare il tuo account, clicca su questo link:
+
+{{ protocol }}://{{ domain }}/{{ url }}
+
+Se non hai richiesto questa email, ignorala pure.

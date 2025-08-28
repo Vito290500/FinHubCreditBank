@@ -1,0 +1,62 @@
+/* STILE TABELLA ESTRATTO CONTO (stile riutilizzato dalla tabella transazioni) */
+
+.transazioni-header-flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.transazioni-controls input{
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 2px solid var(--blue-200);
+}
+.transazioni-table{
+    width: 100%;
+    min-height: 312.5px;
+}
+.transazioni-table.elenco-movimenti-table th {
+  background: var(--blue-500) !important;
+  color: #fff !important;
+  margin: 0!important;
+}
+.transazioni-table.elenco-movimenti-table th,
+.transazioni-table.elenco-movimenti-table td {
+  border-bottom: 1px solid #f0f2f7;
+  padding: 0.75rem 1.1rem;
+  margin: 0;
+  box-shadow: none;
+  border-radius: 0;
+}
+.transazioni-table.elenco-movimenti-table tr{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    width: 100%;
+}
+.transazioni-table.elenco-movimenti-table tr td{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.transazioni-table.elenco-movimenti-table tr td:first-of-type{
+    border-left: 1px solid #ddd;
+}
+.transazioni-table.elenco-movimenti-table tr td:last-of-type{
+    border-right: 1px solid #ddd;
+}
+.transazioni-table.elenco-movimenti-table tr td button{
+    background-color: var(--blue-400);
+    border-radius: 4px;
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+.transazioni-table.elenco-movimenti-table tr td button:hover{
+    background-color: var(--blue-500);
+}
+
+
+
+

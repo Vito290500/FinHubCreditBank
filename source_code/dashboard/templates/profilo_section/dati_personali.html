@@ -1,0 +1,124 @@
+
+<!-- PROFILE SECTION - GESTISCI ACCOUNT -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FCHB - Gestisci Account</title>
+        <link rel="icon" href="{% static 'image/IconWeb.png' %}" type="image/png">
+
+        <!-- STYLE CSS IMPORT  -->
+        <link rel="stylesheet" href="{% static 'css/componenti.css' %}">
+        <link rel="stylesheet" href="{% static 'css/profile_section/profile.css' %}">
+        <link rel="stylesheet" href="{% static 'css/profile_section/gestisci_account.css' %}">
+    </head>
+
+    <body>
+        {% include 'components/navbar.html' %}
+
+        <div class="header-container">
+            <div class="title-container-header">
+
+                <div class="img-circle-container">
+                    <img src="{% static 'image/users.jpg' %}" alt="User">
+                </div>
+                    
+                <h3>Gestisci Account</h3>
+            </div>
+
+            <div class="menu-trace">
+                <a href="{% url 'homepage' %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <path d="M3 10.29L12 3l9 7.29V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1v-9.71z"/>
+                    </svg>
+                </a>
+                <p class="arrow-right">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                        <path d="M8 4l8 8-8 8V4z"/>
+                    </svg>
+                </p>
+                <a href="{% url 'profile-page' %}" class="subtitle-menu-trace">Dati Profilo</a>
+                <p class="arrow-right">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                        <path d="M8 4l8 8-8 8V4z"/>
+                    </svg>
+                </p>
+                <p class="subtitle-menu-trace">Dati Personali</p>
+            </div>
+        </div>
+
+        <div class="main-container">
+            <div class="container-informazioni-account">
+
+                <h3>Gestisci i Dati Personali</h3>
+
+                <div class="celle-dati">
+                    <div class="celle-dati-content">
+                        <h5>Full Name:</h5>
+                        <input id="full-name-field" name="full_name" class="input-field not-active" type="text" value="" readonly>
+                    </div>
+                    <div class="celle-dati-tools">
+                        <button id="edit-full-name-btn">modifica</button>
+                        <button id="cancel-full-name-btn" style="display:none;">cancella</button>
+                    </div>
+                </div>
+                    
+                <div class="celle-dati">
+                    <div class="celle-dati-content">
+                        <h5>Data di nascita:</h5>
+                        <input id="birth-date-field" name="birth_date" class="input-field not-active" type="date" value="" readonly>
+                    </div>
+                    <div class="celle-dati-tools">
+                        <button id="edit-birth-date-btn">modifica</button>
+                        <button id="cancel-birth-date-btn" style="display:none;">cancella</button>
+                    </div>
+                </div>
+                    
+                <div class="celle-dati">
+                    <div class="celle-dati-content">
+                        <h5>Codice Fiscale:</h5>
+                        <input id="fiscal-code-field" name="fiscal_code" class="input-field not-active" type="text" value="" readonly>
+                    </div>
+                    <div class="celle-dati-tools">
+                        <button id="edit-fiscal-code-btn">modifica</button>
+                        <button id="cancel-fiscal-code-btn" style="display:none;">cancella</button>
+                    </div>
+                </div>
+
+                <div class="celle-dati">
+                    <div class="celle-dati-content">
+                        <h5>Città di residenza:</h5>
+                        <input id="city-field" name="city" class="input-field not-active" type="text" value="" readonly>
+                    </div>
+                    <div class="celle-dati-tools">
+                        <button id="edit-city-btn">modifica</button>
+                        <button id="cancel-city-btn" style="display:none;">cancella</button>
+                    </div>
+                </div>
+
+                <div class="celle-dati">
+                    <div class="celle-dati-content">
+                        <h5>Codice Postale:</h5>
+                        <input id="postal-code-field" name="postal_code" class="input-field not-active" type="text" value="" readonly>
+                    </div>
+                    <div class="celle-dati-tools">
+                        <button id="edit-postal-code-btn">modifica</button>
+                        <button id="cancel-postal-code-btn" style="display:none;">cancella</button>
+                    </div>
+                </div>
+
+                <div class="updated-div">
+                    <p class="last-update"></p>
+                </div>        
+            </div>
+        </div>
+        
+        {% include 'components/footer.html' %}
+    </body>
+
+    <script src="{% static 'js/profile_section/dati_personali.js' %}"></script>
+    <script src="{% static 'js/navbar.js' %}"></script>
+</html>
